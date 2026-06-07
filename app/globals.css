@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --color-forest-green: #1a3c28;
+  --color-spice-green: #2e4d3a;
+  --color-olive: #5b654a;
+  --color-cardamom: #8a9a5b;
+  --color-clove-brown: #4d3a2e;
+  --color-sandalwood-beige: #e5d3b3;
+  --color-turmeric-warmth: #d4a373;
+  --color-export-dark-green: #0a1f13;
+  --color-muted-gold: #c2a878;
+  --color-soft-ivory: #d2dcc8;
+  --color-warm-neutral: #c5d0ba;
+}
+
+@theme inline {
+  --color-forest-green: var(--color-forest-green);
+  --color-spice-green: var(--color-spice-green);
+  --color-olive: var(--color-olive);
+  --color-cardamom: var(--color-cardamom);
+  --color-clove-brown: var(--color-clove-brown);
+  --color-sandalwood-beige: var(--color-sandalwood-beige);
+  --color-turmeric-warmth: var(--color-turmeric-warmth);
+  --color-export-dark-green: var(--color-export-dark-green);
+  --color-muted-gold: var(--color-muted-gold);
+  --color-soft-ivory: var(--color-soft-ivory);
+  --color-warm-neutral: var(--color-warm-neutral);
+
+  --font-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-playfair), "Times New Roman", Times, serif;
+
+  /* Custom asymmetric spacing utilities for controlled imperfection */
+  --spacing-fluid-1: clamp(1rem, 2vw, 2rem);
+  --spacing-fluid-2: clamp(2rem, 4vw, 4rem);
+  --spacing-fluid-3: clamp(4rem, 8vw, 8rem);
+}
+
+body {
+  background-color: var(--color-soft-ivory);
+  color: var(--color-export-dark-green);
+  font-family: var(--font-sans);
+  overscroll-behavior: none;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scrolling base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Global Noise Overlay for cinematic realism */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Base typography elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
