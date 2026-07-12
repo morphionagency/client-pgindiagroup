@@ -139,15 +139,19 @@ export default function GlobalNetworkMap() {
                 );
               })}
             </div>
+          </div>
 
-            {/* Mobile/Tablet Overlay Details Card (Interactive Slide-Up Panel) */}
-            <AnimatePresence>
-              {selectedCountry && activeCountryData && (
+          {/* Mobile/Tablet Overlay Details Card (Interactive Panel below map) */}
+          <div className="lg:hidden order-3 w-full min-h-[160px] flex flex-col">
+            <AnimatePresence mode="wait">
+              {selectedCountry && activeCountryData ? (
                 <motion.div 
+                  key={activeCountryData.name}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 15 }}
-                  className="absolute bottom-4 left-4 right-4 z-30 lg:hidden bg-export-dark-green/95 backdrop-blur-md border border-muted-gold/30 p-5 rounded-lg shadow-2xl flex flex-col"
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full flex-1 bg-export-dark-green/95 backdrop-blur-md border border-muted-gold/30 p-5 rounded-lg shadow-2xl flex flex-col"
                 >
                   <div className="flex justify-between items-start mb-3">
                     <div>
@@ -165,7 +169,7 @@ export default function GlobalNetworkMap() {
                     </button>
                   </div>
                   
-                  <div>
+                  <div className="mt-4">
                     <p className="text-[9px] text-muted-gold uppercase tracking-widest font-sans font-semibold mb-2">Key Sourced Commodities</p>
                     <div className="flex flex-wrap gap-1.5">
                       {activeCountryData.products.map(product => (
@@ -175,6 +179,17 @@ export default function GlobalNetworkMap() {
                       ))}
                     </div>
                   </div>
+                </motion.div>
+              ) : (
+                <motion.div 
+                  key="empty"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="w-full flex-1 border border-spice-green/30 bg-forest-green/10 rounded-lg flex flex-col justify-center items-center text-center p-4 min-h-[160px]"
+                >
+                  <MapPin size={24} className="text-muted-gold/50 mb-2" />
+                  <p className="text-soft-ivory/50 font-serif text-sm">Tap a node on the map to view details.</p>
                 </motion.div>
               )}
             </AnimatePresence>
